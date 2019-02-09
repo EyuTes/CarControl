@@ -1,0 +1,108 @@
+﻿@model Itancan.Core.ViewModels.CarViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/cars.js"></script>
+<h2>DisplayCarTraffic</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <p>In traffic</p>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Registration Number
+                    </th>
+                    <th>
+                        Car Model
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+        </table>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add Car</button><br /><br />
+    </div>
+    <div class="col-md-4">
+        <p><a class="btn btn-default"> &raquo;</a></p>
+        <p><a class="btn btn-default"> &laquo; </a></p>
+    </div>
+    <div class="col-md-4">
+        <p>Out traffic</p>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Registration Number
+                    </th>
+                    <th>
+                        Car Model
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+        </table>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add Car</button><br /><br />
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">×</span></button>*@
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Car</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    @Html.ValidationSummary(true, "Please fix the following errors.")
+                    <div class="form-group">
+                        <label for="CarId">ID</label>
+                        <input type="text" class="form-control" id="Id" placeholder="Id" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CarModel)
+                        <input type="text" class="form-control" id="CarModel" placeholder="Car Model" />
+                        @Html.ValidationMessageFor(m => m.CarModel)
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(m => m.RegistrationNumber)
+                        @Html.TextBoxFor(m => m.RegistrationNumber, "{A-Za-z0-9}", new { @placeholder = "Registration Number",@id = "RegistrationNumber", @class = "form-control" })
+                       
+                        @Html.ValidationMessageFor(m => m.RegistrationNumber)
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CarStatus">Car Status</label>
+                        <input type="text" class="form-control" id="CarStatus" placeholder="Car Status" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
