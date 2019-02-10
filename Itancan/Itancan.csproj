@@ -144,6 +144,7 @@
     <Compile Include="Core\Repositories\IUserAccountRespository.cs" />
     <Compile Include="Core\ViewModels\AccountFormViewModel.cs" />
     <Compile Include="Core\ViewModels\CarViewModel.cs" />
+    <Compile Include="Core\ViewModels\ValidRegNumber.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,7 +212,6 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_AdminNavBar.cshtml" />
-    <Content Include="Views\Traffic\DisplayCarTraffic.cshtml" />
     <Content Include="Views\Traffic\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

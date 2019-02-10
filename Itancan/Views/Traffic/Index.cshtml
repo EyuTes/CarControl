@@ -74,28 +74,30 @@
             </div>
             <div class="modal-body">
                 <form>
-                    @Html.ValidationSummary(true, "Please fix the following errors.")
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "Please fix the following errors.", new { @class = "text-danger" })
                     <div class="form-group">
-                        <label for="CarId">ID</label>
-                        <input type="text" class="form-control" id="Id" placeholder="Id" disabled="disabled" />
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.CarModel)
-                        <input type="text" class="form-control" id="CarModel" placeholder="Car Model" />
-                        @Html.ValidationMessageFor(m => m.CarModel)
-                    </div>
-                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="CarId">ID</label>
+                            <input type="text" class="form-control" id="Id" placeholder="Id" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.CarModel)
+                            <input type="text" class="form-control" id="CarModel" placeholder="Car Model" data-val-regex-pattern="([a-zA-Z0-9&#32;.&amp;amp;&amp;#39;-]+)" />
+                            @Html.ValidationMessageFor(m => m.CarModel)
+                        </div>
+                        <div class="form-group">
 
-                        @Html.LabelFor(m => m.RegistrationNumber)
-                        @Html.TextBoxFor(m => m.RegistrationNumber, "{A-Za-z0-9}", new { @placeholder = "Registration Number",@id = "RegistrationNumber", @class = "form-control" })
-                       
-                        @Html.ValidationMessageFor(m => m.RegistrationNumber)
-                    </div>
+                            @Html.LabelFor(m => m.RegistrationNumber)
+                            <input type="text" class="form-control" id="RegistrationNumber" placeholder="RegistrationNumber" data-val-regex-pattern="([a-zA-Z0-9&#32;.&amp;amp;&amp;#39;-]+)" />
 
-                    <div class="form-group">
-                        <label for="CarStatus">Car Status</label>
-                        <input type="text" class="form-control" id="CarStatus" placeholder="Car Status" />
-                    </div>
+                            @Html.ValidationMessageFor(m => m.RegistrationNumber)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CarStatus">Car Status</label>
+                            <input type="text" class="form-control" id="CarStatus" placeholder="Car Status" />
+                        </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -106,3 +108,6 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
